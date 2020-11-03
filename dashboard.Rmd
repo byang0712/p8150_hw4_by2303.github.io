@@ -1,15 +1,13 @@
 ---
-title: "plotly"
+title: "Dashboard"
 output: 
-  html_document:
-    toc: true
-    toc_float: true
-
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
 ---
- 
-# flexdashboard 
 
-```{r}
+```{r setup, include=FALSE}
+library(flexdashboard)
 library(tidyverse)
 library(p8105.datasets) 
 library(plotly)
@@ -33,7 +31,12 @@ weather_df =
     month = lubridate::floor_date(date, unit = "month")) %>%
   select(name, id, everything())
 ```
-## scatter plot
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Chart A
+
 ```{r}
 weather_df %>% 
   plot_ly(
@@ -41,12 +44,23 @@ weather_df %>%
     color = ~name, text = ~date, alpha = 0.5
   )
 ```
-## boxplot 
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Chart B
+
 ```{r}
-weather_df %>%  
-  plot_ly(
-    x = ~month, y = ~prcp, type = "box", color = ~name, colors = "viridis"
-  )
-  
+weather_df %>%
+  group_by(name, month) %>%
+  summarize(mean_tmax = mean(tmax)) %>%
+  plot_ly(x = ~month, y = ~mean_tmax, color = ~name,
+          mode = "lines + markers")
+```
+
+### Chart C
+
+```{r}
+
 ```
 
