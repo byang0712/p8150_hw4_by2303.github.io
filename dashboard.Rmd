@@ -61,6 +61,14 @@ weather_df %>%
 ### Chart C
 
 ```{r}
-
+weather_df %>% 
+  group_by(name, month) %>% 
+  summarise(mean_prcp = mean(prcp)) %>% 
+  filter(name == "CentralPark_NY") %>% 
+  mutate(
+    month = as.factor(month),
+    month = fct_reorder(month, mean_prcp)) %>% 
+  plot_ly(x = ~month, y = ~mean_prcp, color = ~month,
+          type = "bar", colors = "viridis")
 ```
 
