@@ -1,10 +1,23 @@
 ---
-title: "index"
+title: "Bin Yang"
 output: 
   html_document:
     toc: true
     toc_float: true
-    theme: cerulean
 ---
+
+<script>
+   $(document).ready(function() {
+     $head = $('#header');
+     $head.prepend('<img src="./image/me.JPG"style=\"float: right;width: 150px;\"/>')
+   });
+</script>
+
+
+# Introduction
+
+I am currently a first year master student in biostatistics at Columbia University mailman school of public health. I am interested in data science. Learn more about me in this website!  
+
+
 
 [about me](about.html)
