@@ -4,22 +4,17 @@ output:
   html_document
 ---
 
-<script>
-   $(document).ready(function() {
-     $head = $('#header');
-     $head.prepend('<img src="./image/me.JPG"style=\"float: right;width: 150px;\"/>')
-   });
-</script>
+I am currently a first year master student in biostatistics at Columbia University mailman school of public health. Learn more about me in this website!  
 
-I am currently a first year master student in biostatistics at Columbia University mailman school of public health. I am interested in data science. Learn more about me in this website!  
+<br>
+<center>
+<img src="image/cat.jpeg"  style ="height:50% ;width: 50%">
+</center>
+<br> 
 
-# Experience 
-Click the link to see my academic and professional experience.  
-[Experience](about.html)  
+#### Experience 
+I had several research experiences. I have a strong interest in statistical learning and causal inference.  
+You can learn more about me via [experience](about.html), and my [CV](files/P8105_cv.pdf).
 
-Click the link to see my CV.  
-[CV](files/P8105_cv.pdf)
-
-# Dashboard
-Click the link to see the dashboard I created for NOAA dataset.   
-[NOAA dashboard](dashboard.html)
+#### Dashboard
+I created a dashboard for the NOAA dataset. Click to find out more. [dashboard](dashboard.html)

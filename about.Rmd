@@ -1,10 +1,28 @@
 ---
 title: "About me"
 output: 
-  html_document:
-    toc: true
-    toc_float: true
+  html_document
+
 
 ---
  
-# This page has information about me.
+#### Research Experience
+I have a strong interest in statistical learning and causal inference.  
+
+Department of Mathematics, College of William and Mary Research Assistant. 
+
+• Cleaned and preprocessed the microenvironment microarray data from over thousands of microenvironmental
+characteristics features; generated features matrices.  
+• Performed the hierarchical clustering on all feature matrices; utilized the heatmap to assess the data patterns and missingness; imputed the missingness using a modified missing-indicator method.  
+• Performed principle component analysis to assess the potential clustering pattern for different
+microenvironment and data quality.    
+
+Raymond A. Mason School of Business, College of William and Mary Williamsburg, VA Research Assistant. 
+
+• Collected the transportation data from the US transportation department and merged high dimensional
+datasets with complex structure in R to form a new database.  
+• Investigated the association between the average revenue of logistics companies and emission factors after adjusting for interested covariates based on linear regression.  
+• Built a final model based on step-wise selection method. Evaluated the functional form of the response.  
+• Investigated the time effect of association between the annual revenue and emission factors based on GEE
+model. Selected working correlation structure based on QICs.  
+• Predicted the subject-specific annual revenue based on given emission factors as well as covariates based on generalized linear mixed model.  
