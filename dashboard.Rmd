@@ -11,6 +11,7 @@ library(flexdashboard)
 library(tidyverse)
 library(p8105.datasets) 
 library(plotly)
+library(lubridate)
 ```
 
 ```{r}
@@ -27,8 +28,12 @@ weather_df =
       USC00519397 = "Waikiki_HA",
       USS0023B17S = "Waterhole_WA"),
     tmin = tmin / 10,
-    tmax = tmax / 10,
-    month = lubridate::floor_date(date, unit = "month")) %>%
+    tmax = tmax / 10,) %>% 
+  separate(date, into = c("year", "month", "day"), convert = TRUE) %>% 
+  mutate(
+    month =  as.character(month(ymd(010101) + months(month-1),label=TRUE,abbr=TRUE)),
+    month = as.factor(month),
+    month = fct_relevel(month, "Jan" ,"Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct" ,"Nov", "Dec")) %>% 
   select(name, id, everything())
 ```
 
@@ -42,7 +47,10 @@ weather_df %>%
   plot_ly(
     x = ~tmin, y = ~tmax, type = "scatter", mode = "markers", 
     color = ~name, text = ~date, alpha = 0.5
-  )
+  ) %>% 
+  layout(title = "Scatter Plot for max and min Temperatures",
+         xaxis = list(title = "min"),
+         yaxis = list(title = "max"))
 ```
 
 Column {data-width=350}
@@ -51,11 +59,30 @@ Column {data-width=350}
 ### Chart B
 
 ```{r}
-weather_df %>%
+weather_df2 =  
+  rnoaa::meteo_pull_monitors(
+    c("USW00094728", "USC00519397", "USS0023B17S"),
+    var = c("PRCP", "TMIN", "TMAX"), 
+    date_min = "2017-01-01",
+    date_max = "2017-12-31") %>%
+  mutate(
+    name = recode(
+      id, 
+      USW00094728 = "CentralPark_NY", 
+      USC00519397 = "Waikiki_HA",
+      USS0023B17S = "Waterhole_WA"),
+    tmin = tmin / 10,
+    tmax = tmax / 10,
+    month = lubridate::floor_date(date, unit = "month")) %>%
+  select(name, id, everything())
+
+weather_df2 %>% 
   group_by(name, month) %>%
   summarize(mean_tmax = mean(tmax)) %>%
-  plot_ly(x = ~month, y = ~mean_tmax, color = ~name,
-          mode = "lines + markers")
+  plot_ly(x = ~month, y = ~mean_tmax, color = ~name, mode = "lines+markers") %>% 
+  layout(title = "Line Chart for Average Max Temperature",
+         xaxis = list(title = "month"),
+         yaxis = list(title = "max"))
 ```
 
 ### Chart C
@@ -66,9 +93,13 @@ weather_df %>%
   summarise(mean_prcp = mean(prcp)) %>% 
   filter(name == "CentralPark_NY") %>% 
   mutate(
-    month = as.factor(month),
     month = fct_reorder(month, mean_prcp)) %>% 
   plot_ly(x = ~month, y = ~mean_prcp, color = ~month,
-          type = "bar", colors = "viridis")
+          type = "bar", colors = "viridis") %>% 
+  layout(title = "Bar chart for average precipitation",
+         xaxis = list(title = "month"),
+         yaxis = list(title = "mean prep"))
+  
+  
 ```
 
