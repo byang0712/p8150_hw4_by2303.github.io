@@ -1,9 +1,7 @@
 ---
 title: "Bin Yang"
 output: 
-  html_document:
-    toc: true
-    toc_float: true
+  html_document
 ---
 
 <script>
@@ -13,16 +11,15 @@ output:
    });
 </script>
 
-
-# Introduction
-
 I am currently a first year master student in biostatistics at Columbia University mailman school of public health. I am interested in data science. Learn more about me in this website!  
 
 # Experience 
-click the link to see my academic and professional experience.  
+Click the link to see my academic and professional experience.  
 [Experience](about.html)  
 
-click the link to see my CV.  
+Click the link to see my CV.  
 [CV](files/P8105_cv.pdf)
 
-
+# Dashboard
+Click the link to see the dashboard I created for NOAA dataset.   
+[NOAA dashboard](dashboard.html)
